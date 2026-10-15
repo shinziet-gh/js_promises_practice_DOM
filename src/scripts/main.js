@@ -27,13 +27,19 @@ const thirdPromise = new Promise((resolve, reject) => {
 
   document.addEventListener('click', () => {
     leftClicked = true;
-    if (leftClicked && rightClicked) resolve('Third promise was resolved');
+
+    if (leftClicked && rightClicked) {
+      resolve('Third promise was resolved');
+    }
   });
 
   document.addEventListener('contextmenu', (e) => {
     e.preventDefault();
     rightClicked = true;
-    if (leftClicked && rightClicked) resolve('Third promise was resolved');
+
+    if (leftClicked && rightClicked) {
+      resolve('Third promise was resolved');
+    }
   });
 });
 
