@@ -22,16 +22,18 @@ const secondPromise = new Promise((resolve, reject) => {
 });
 
 const thirdPromise = new Promise((resolve, reject) => {
-  document.addEventListener('contextmenu', () => {
-    document.addEventListener('click', () => {
-      resolve('Third promise was resolved');
-    });
-  });
+  let leftClicked = false;
+  let rightClicked = false;
 
   document.addEventListener('click', () => {
-    document.addEventListener('contextmenu', () => {
-      resolve('Third promise was resolved');
-    });
+    leftClicked = true;
+    if (leftClicked && rightClicked) resolve('Third promise was resolved');
+  });
+
+  document.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    rightClicked = true;
+    if (leftClicked && rightClicked) resolve('Third promise was resolved');
   });
 });
 
