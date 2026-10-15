@@ -1,92 +1,90 @@
 'use strict';
 
 const firstPromise = new Promise((resolve, reject) => {
-    const timeoutId = setTimeout(() => {
-        reject(new Error('First promise was rejected'));
-    }, 3000);
+  const timeoutId = setTimeout(() => {
+    reject(new Error('First promise was rejected'));
+  }, 3000);
 
-    document.addEventListener('click', () => {
-        clearTimeout(timeoutId);
-        resolve('First promise was resolved');
-    });
+  document.addEventListener('click', () => {
+    clearTimeout(timeoutId);
+    resolve('First promise was resolved');
+  });
 });
 
 const secondPromise = new Promise((resolve, reject) => {
-    document.addEventListener('click', () => {
-        resolve('Second promise was resolved');
-    });
+  document.addEventListener('click', () => {
+    resolve('Second promise was resolved');
+  });
 
-    document.addEventListener('contextmenu', () => {
-        resolve('Second promise was resolved');
-    });
+  document.addEventListener('contextmenu', () => {
+    resolve('Second promise was resolved');
+  });
 });
 
 const thirdPromise = new Promise((resolve, reject) => {
-
-    document.addEventListener('contextmenu', () => {
-        document.addEventListener('click', () => {
-            resolve('Third promise was resolved');
-        });
-    });
-
+  document.addEventListener('contextmenu', () => {
     document.addEventListener('click', () => {
-        document.addEventListener('contextmenu', () => {
-            resolve('Third promise was resolved');
-        });
+      resolve('Third promise was resolved');
     });
+  });
 
+  document.addEventListener('click', () => {
+    document.addEventListener('contextmenu', () => {
+      resolve('Third promise was resolved');
+    });
+  });
 });
 
 firstPromise
-    .then((message) => {
-        const div = document.createElement('div');
+  .then((message) => {
+    const div = document.createElement('div');
 
-        div.setAttribute('data-qa', 'notification');
-        div.className = 'success';
-        div.textContent = message;
-        document.body.appendChild(div);
-    })
-    .catch((error) => {
-        const div = document.createElement('div');
+    div.setAttribute('data-qa', 'notification');
+    div.className = 'success';
+    div.textContent = message;
+    document.body.appendChild(div);
+  })
+  .catch((error) => {
+    const div = document.createElement('div');
 
-        div.setAttribute('data-qa', 'notification');
-        div.className = 'error';
-        div.textContent = error.message;
-        document.body.appendChild(div);
-    });
+    div.setAttribute('data-qa', 'notification');
+    div.className = 'error';
+    div.textContent = error.message;
+    document.body.appendChild(div);
+  });
 
 secondPromise
-    .then((message) => {
-        const div = document.createElement('div');
+  .then((message) => {
+    const div = document.createElement('div');
 
-        div.setAttribute('data-qa', 'notification');
-        div.className = 'success';
-        div.textContent = message;
-        document.body.appendChild(div);
-    })
-    .catch((error) => {
-        const div = document.createElement('div');
+    div.setAttribute('data-qa', 'notification');
+    div.className = 'success';
+    div.textContent = message;
+    document.body.appendChild(div);
+  })
+  .catch((error) => {
+    const div = document.createElement('div');
 
-        div.setAttribute('data-qa', 'notification');
-        div.className = 'error';
-        div.textContent = error.message;
-        document.body.appendChild(div);
-    });
+    div.setAttribute('data-qa', 'notification');
+    div.className = 'error';
+    div.textContent = error.message;
+    document.body.appendChild(div);
+  });
 
 thirdPromise
-    .then((message) => {
-        const div = document.createElement('div');
+  .then((message) => {
+    const div = document.createElement('div');
 
-        div.setAttribute('data-qa', 'notification');
-        div.className = 'success';
-        div.textContent = message;
-        document.body.appendChild(div);
-    })
-    .catch((error) => {
-        const div = document.createElement('div');
+    div.setAttribute('data-qa', 'notification');
+    div.className = 'success';
+    div.textContent = message;
+    document.body.appendChild(div);
+  })
+  .catch((error) => {
+    const div = document.createElement('div');
 
-        div.setAttribute('data-qa', 'notification');
-        div.className = 'error';
-        div.textContent = error.message;
-        document.body.appendChild(div);
-    });
+    div.setAttribute('data-qa', 'notification');
+    div.className = 'error';
+    div.textContent = error.message;
+    document.body.appendChild(div);
+  });
